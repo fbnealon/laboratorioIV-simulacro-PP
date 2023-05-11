@@ -1,0 +1,30 @@
+<table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Nombre</th>
+        <th scope="col">Apellido</th>
+        <th scope="col">Edad</th>
+        <th scope="col">Sexo</th>
+        <th scope="col">País</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        style="cursor: pointer"
+        *ngFor="let actor of listaRecibida"
+      >
+        <td>{{ actor.nombre }}</td>
+        <td>{{ actor.apellido }}</td>
+        <td>{{ actor.edad }}</td>
+        <td>{{ actor.sexo }}</td>
+        <td>{{ actor.nombrePais }}</td>
+        <td>
+          <img
+            style="width: 80px; height: 80px; border-radius: 50%"
+            src="{{ actor.banderaPais }}"
+            alt="bandera"
+          />
+        </td>
+      </tr>
+    </tbody>
+  </table>

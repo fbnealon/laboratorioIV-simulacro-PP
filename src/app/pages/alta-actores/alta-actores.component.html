@@ -1,0 +1,120 @@
+<app-navbar></app-navbar>
+<br>
+<div class="container">
+  <div class="py-5 text-center">
+    <img class="d-block mx-auto mb-4" src="../../../assets/academy-award.png" alt="" width="72" height="72">
+    <h2>Alta actor</h2>
+    <p class="lead">Formulario para alta de actor</p>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4 order-md-2 mb-4">
+      <h4 class="d-flex justify-content-between align-items-center mb-3">
+        <span class="text-muted">Listado de países</span>
+      </h4>
+      <app-tabla-paises (enviamosUnPais)="obtenerPaisSeleccionado($event)"></app-tabla-paises>
+    </div>
+    <div class="col-md-8 order-md-1">
+      <div class="container">
+        <form [formGroup]="forma" (ngSubmit)="aceptar()">
+          <div class="row">
+            <div class="col-md-12 mb-5">
+              <h2>Nuevo actor</h2>
+            </div>
+          </div>
+          <div class="row formulario">
+            <div class="col-md-6 mb-3">
+              <label for="nombre" class="form-label">Nombre</label>
+              <input type="text" class="form-control" id="nombre" placeholder="Ingrese nombre" formControlName="nombre" [(ngModel)]="actorNuevo.nombre">
+              <small class="invalid"
+                *ngIf="forma.controls['nombre'].errors?.['required'] && forma.controls['nombre']['touched']">
+                El nombre es requerido
+              </small>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="apellido" class="form-label">Apellido</label>
+              <input type="text" class="form-control" id="apellido" placeholder="Ingrese apellido" formControlName="apellido" [(ngModel)]="actorNuevo.apellido">
+              <small class="invalid"
+                *ngIf="forma.controls['apellido'].errors?.['required'] && forma.controls['apellido']['touched']">
+                El apellido es requerido
+              </small>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="edad" class="form-label">Edad</label>
+              <input type="number" class="form-control" id="edad" placeholder="Ingrese edad" formControlName="edad" [(ngModel)]="actorNuevo.edad">
+              <small class="invalid"
+                *ngIf="forma.controls['edad'].errors?.['required'] && forma.controls['edad']['touched']">
+                La edad es requerida
+              </small>
+              <small class="invalid"
+                *ngIf="forma.controls['edad'].errors?.['min'] || forma.controls['edad'].errors?.['max'] && forma.controls['edad']['touched']">
+                La edad debe estar entre 0 y 120
+              </small>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="sexo" class="form-label">Sexo</label>
+              <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="sexo" formControlName="sexo" [(ngModel)]="actorNuevo.sexo">
+                <option value="">Seleccione uno</option>
+                <option value="F">Femenino</option>
+                <option value="M">Masculino</option>
+              </select>
+              <small class="invalid"
+                *ngIf="forma.controls['sexo'].errors?.['required'] && forma.controls['sexo']['touched']">
+                El sexo es requerido
+              </small>
+            </div>
+          </div>
+          <div class="col-sm-7">
+            <label for="nombrePais" class="form-label">Pais</label>
+            <div style="display: flex;">
+              <input type="text" class="form-control" formControlName="nombrePais" [ngModel]="actorNuevo.nombrePais" required readonly/>
+              <img *ngIf="actorNuevo.banderaPais" class="paisElegido" src="{{ actorNuevo.banderaPais }}" alt="" />
+            </div>
+            <small class="invalid" *ngIf="forma.controls['nombrePais'].errors?.['required'] && forma.controls['nombrePais']['touched']">El pais es requerido</small>
+          </div>
+          <div class="row">
+            <div class="col-md-12 mb-5">
+            </div>
+            <div class="col-md-12 d-grid gap-2">
+              <button type="submit" class="btn btn-primary btn-block" (click) = guardarActor($event)>Aceptar</button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <app-actor-listado [listaRecibida]="actores"></app-actor-listado>
+    </div>
+  </div>
+
+
+  <!-- Bootstrap core JavaScript
+  ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script>window.jQuery || document.write('<script src="../../../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+  <script src="../../../../assets/js/vendor/popper.min.js"></script>
+  <script src="../../../../dist/js/bootstrap.min.js"></script>
+  <script src="../../../../assets/js/vendor/holder.min.js"></script>
+  <script>
+      // Example starter JavaScript for disabling form submissions if there are invalid fields
+      (function () {
+        'use strict';
+
+        window.addEventListener('load', function () {
+          // Fetch all the forms we want to apply custom Bootstrap validation styles to
+          var forms = document.getElementsByClassName('needs-validation');
+
+          // Loop over them and prevent submission
+          var validation = Array.prototype.filter.call(forms, function (form) {
+            form.addEventListener('submit', function (event) {
+              if (form.checkValidity() === false) {
+                event.preventDefault();
+                event.stopPropagation();
+              }
+              form.classList.add('was-validated');
+            }, false);
+          });
+        }, false);
+      })();
+  </script>

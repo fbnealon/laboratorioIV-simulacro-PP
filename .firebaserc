@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "simulacro-9b830": {
+      "hosting": {
+        "simulacro": [
+          "simulacro-9b830"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "simulacro-9b830"
+  }
+}

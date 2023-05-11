@@ -1,0 +1,37 @@
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">TITULO</th>
+      <th scope="col">ESPECTADORES</th>
+      <th scope="col">FECHA ESTRENO</th>
+      <th scope="col">GENERO</th>
+      <th scope="col">ACTORES</th>
+      <th scope="col">PORTADA</th>
+      <th scope="col">DETALLE</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr
+      style="cursor: pointer"
+      *ngFor="let pelicula of listaRecibida"
+    >
+      <td>{{ pelicula.nombre }}</td>
+      <td>{{ pelicula.cantidadPublico }}</td>
+      <td>{{ pelicula.fechaEstreno }}</td>
+      <td>{{ pelicula.tipo }}</td>
+      <td>{{ pelicula.actor.nombre }} {{ pelicula.actor.apellido }}</td>
+      <td>
+        <img
+          style="width: 80px; height: 80px; border-radius: 50%"
+          src="{{ pelicula.fotoPelicula }}"
+          alt="bandera"
+        />
+      </td>
+      <td>
+          <button class="btn btn-primary" style="margin: 10px 10px auto auto" (click)="seleccionarPelicula(pelicula)">
+              Ver detalle
+          </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
