@@ -16,8 +16,8 @@ const routes: Routes = [
   {path: 'actor/alta', component:AltaActoresComponent},
   {path: 'actor/listado', component:ActorListadoComponent},
   {path: 'peliculas/listado', component:PeliculaListadoComponent},
-  {path: 'paises/listado', component:TablaPaisesComponent}
-
+  {path: 'paises/listado', component:TablaPaisesComponent},
+  {path: '**', component:BusquedaComponent}
 ];
 
 @NgModule({
